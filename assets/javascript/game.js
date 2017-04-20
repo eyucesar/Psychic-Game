@@ -10,12 +10,14 @@
     var guessesSoFar = [];
     var guessesVar;
 
-    //This is where I capture user's guess and computer's choice.	
+    //computer chooses a random letter and the value is assigned to computerGuess variable.
+    var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+    //This is where my function starts. I start by capturing user's guess.	
 	document.onkeyup = function(event) {
         //user presses a key and I convert into a lower case letter and assing the value to userGuess variable.
     	var userGuess = event.key.toLowerCase();
-        //computer chooses a random letter and the value is assigned to computerGuess variable.
-    	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
         //testing the values of variables to see whether my code works so far
         console.log("computer guess: " + computerGuess);
         console.log("user guess: " + userGuess);
@@ -25,21 +27,26 @@
             guessesSoFar.push(userGuess);
             guessesLeft--;
                 if (guessesLeft === 0) {
-                    alert("You lost!");
+                    alert("You lost! Seems like you are not a very good psychic after all :)");
                     losses++;
                     guessesLeft = 9;
+                    //here I empty the elements inside the array to start the game again.
                     guessesSoFar = [];
-                    alert("Type another letter to keep playing!")
+                    //after the execution of each if statement, computer picks another letter randomly.
+                    computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
                 }
 
         } else {
             wins++;
-            alert("You won!");
+            alert("You won! Wow, I'm impressed!");
             guessesLeft = 9;
+            //here I empty the elements inside the array to start the game again.
             guessesSoFar = [];
-            alert("Type another letter to keep playing!")
+            //after the execution of each if statement, computer picks another letter randomly.
+            computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
         }
 
+        //Here I write the counters and the guessed letters to the screen.
         document.getElementById("wins").innerHTML = wins;
         document.getElementById("losses").innerHTML = losses;
         document.getElementById("guessesLeft").innerHTML = guessesLeft;
@@ -57,5 +64,3 @@
         */
 
     };
-
-    
