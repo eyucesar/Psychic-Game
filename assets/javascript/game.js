@@ -22,17 +22,19 @@
 
         //if statements begin. If user cannot guess the letter, the pressed key is pushed to the guessesSoFar array.
         if (userGuess !== computerGuess) {
+            if (guessesSoFar.indexOf(userGuess) === -1) {
             guessesSoFar.push(userGuess);
             guessesLeft--;
-                if (guessesLeft === 0) {
-                    alert("You lost! Seems like you are not a very good psychic after all :)");
-                    losses++;
-                    guessesLeft = 10;
-                    //here I empty the elements inside the array to start the game again.
-                    guessesSoFar = [];
-                    //after the execution of each if statement, computer picks another letter randomly.
-                    computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-                }
+        }
+            if (guessesLeft === 0) {
+                alert("You lost! Seems like you are not a very good psychic after all :)");
+                losses++;
+                guessesLeft = 10;
+                //here I empty the elements inside the array to start the game again.
+                guessesSoFar = [];
+                //after the execution of each if statement, computer picks another letter randomly.
+                computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+            }
         //if user guesses the letter, guessesSoFar array is emptied and guessesLeft counter is reset.
         } else {
             wins++;
